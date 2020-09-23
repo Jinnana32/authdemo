@@ -21,13 +21,13 @@ class LocationOnGeolocationFetched extends LocationState {
   List<Object> get props => [_coordinates];
 }
 
-class LocationIsShowState extends LocationState {
-  final bool _isLocationShown;
+class LocationOnGeolocationError extends LocationState {
+  final String _error;
 
-  LocationIsShowState(this._isLocationShown);
+  LocationOnGeolocationError(this._error);
 
-  bool get getIsLocationShown => _isLocationShown;
+  String get getCoordinates => _error;
 
   @override
-  List<Object> get props => [_isLocationShown];
+  List<Object> get props => [_error];
 }

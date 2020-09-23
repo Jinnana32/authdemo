@@ -5,17 +5,11 @@ import 'package:authdemo/presentation/main-navigation-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-
-  UserBloc _userBlock;
+class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<UserBloc, UserState>(
@@ -25,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
             }
           },
           builder: (BuildContext context, state) {
-             _userBlock = BlocProvider.of<UserBloc>(context);
+             final _userBlock = BlocProvider.of<UserBloc>(context);
             return Container(
               child: Column(children: <Widget>[
             FlatButton(
@@ -38,9 +32,4 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    _userBlock.close();
-    super.dispose();
-  }
 }
