@@ -1,6 +1,7 @@
 import 'package:authdemo/domain/model/user.dart';
 import 'package:authdemo/presentation/bloc/user/UserBloc.dart';
 import 'package:authdemo/presentation/bloc/user/UserState.dart';
+import 'package:authdemo/presentation/widgets/home/coordinates-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               children: <Widget>[
                 Text("Welcome ${user.name}"),
-                Text("Github account ${user.githubUrl}")
+                Text("Github account ${user.githubUrl}"),
+                CoordinatesWidget()
               ]
             )
 

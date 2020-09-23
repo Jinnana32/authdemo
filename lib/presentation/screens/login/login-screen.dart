@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:authdemo/data/services/auth/auth-service.dart';
 import 'package:authdemo/presentation/bloc/user/UserBloc.dart';
 import 'package:authdemo/presentation/bloc/user/UserEvent.dart';
 import 'package:authdemo/presentation/bloc/user/UserState.dart';
