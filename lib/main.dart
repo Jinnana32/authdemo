@@ -1,5 +1,6 @@
 import 'package:authdemo/presentation/bloc/location/LocationBloc.dart';
 import 'package:authdemo/presentation/bloc/user/UserBloc.dart';
+import 'package:authdemo/presentation/bloc/weather/WeatherBloc.dart';
 import 'package:authdemo/presentation/screens/login/login-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,9 @@ void main() {
       ),
       BlocProvider<LocationBloc>(
           create: (context) => LocationBloc(),
+      ),
+      BlocProvider<WeatherBloc>(
+          create: (context) => WeatherBloc(),
       )
     ],
   child: App()));

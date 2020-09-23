@@ -36,33 +36,46 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state is UserIsAuthenticated) {
             final stateAsUserAuthenticated = state;
             User user = stateAsUserAuthenticated.getUser;
-            return Container(
-               width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-              Text(
-                "${user.name}",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: AppDimens.TEXT_TITLE
-                )),
-                SizedBox(height: 10),
-              Container(
-                child: Text(
-                  user.githubUrl,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.blueAccent),
+            return Padding(
+              padding: const EdgeInsets.all(AppDimens.SPACING_LARGE),
+              child: Container(
+                 width: double.infinity,
+                  child: Column(
+                    children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: AppDimens.SPACING_LARGE),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(Icons.logout)
+                        )
+                      ],
+                    ),
+                  ),
+                Text(
+                  "${user.name}",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: AppDimens.TEXT_TITLE
+                  )),
+                  SizedBox(height: 10),
+                Container(
+                  child: Text(
+                    user.githubUrl,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.blueAccent),
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              RaisedButton(
-                  onPressed: () => _toggleCoordinates(),
-                  color: AppColors.PRIMARY_COLOR,
-                  child: Text("Toggle coordinates box", style: TextStyle(color: AppColors.PRIMARY_OFFSET))),
-              if (isCoordinatesShown) CoordinatesWidget()
-            ]));
+                SizedBox(height: 10),
+                RaisedButton(
+                    onPressed: () => _toggleCoordinates(),
+                    color: AppColors.PRIMARY_COLOR,
+                    child: Text("Toggle coordinates box", style: TextStyle(color: AppColors.PRIMARY_OFFSET))),
+                if (isCoordinatesShown) CoordinatesWidget()
+              ])),
+            );
           }
 
           return Center(

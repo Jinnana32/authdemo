@@ -2,6 +2,7 @@ import 'package:authdemo/domain/model/coordinates.dart';
 import 'package:authdemo/presentation/bloc/location/LocationBloc.dart';
 import 'package:authdemo/presentation/bloc/location/LocationEvent.dart';
 import 'package:authdemo/presentation/bloc/location/LocationState.dart';
+import 'package:authdemo/presentation/contants/app-dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,18 +22,21 @@ class _CoordinatesWidgetState extends State<CoordinatesWidget> {
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
         if (state is LocationOnGeolocationFetched) {
-          return Container(
-              child: Column(
-            children: [
-              Text("Latitude"),
-              SizedBox(height: 10),
-              Text("${state.getCoordinates.latitude}"),
-              SizedBox(height: 10),
-              Text("${state.getCoordinates.longitude}"),
-              SizedBox(height: 10),
-              Text("122.1321311"),
-            ],
-          ));
+          return Padding(
+            padding: const EdgeInsets.only(top: AppDimens.SPACING_MED),
+            child: Container(
+                child: Column(
+              children: [
+                Text("Latitude", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: AppDimens.SPACING_SMALL),
+                Text("${state.getCoordinates.latitude}"),
+                SizedBox(height: AppDimens.SPACING_SMALL),
+                Text("Longitude", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: AppDimens.SPACING_SMALL),
+                Text("${state.getCoordinates.longitude}"),
+              ],
+            )),
+          );
         }
         return Container(
           child: Text("Can't get coordinates"),
