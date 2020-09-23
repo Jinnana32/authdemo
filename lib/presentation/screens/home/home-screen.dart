@@ -1,5 +1,6 @@
 import 'package:authdemo/domain/model/user.dart';
 import 'package:authdemo/presentation/bloc/user/UserBloc.dart';
+import 'package:authdemo/presentation/bloc/user/UserEvent.dart';
 import 'package:authdemo/presentation/bloc/user/UserState.dart';
 import 'package:authdemo/presentation/contants/app-colors.dart';
 import 'package:authdemo/presentation/contants/app-dimens.dart';
@@ -26,12 +27,24 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _logout(){
+    BlocProvider.of<UserBloc>(context).add(UserLogoutEvent());
+  }
+
+  void _redirectUserToLogin(BuildContext context){
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
       child: BlocConsumer<UserBloc, UserState>(
-        listener: (BuildContext context, state) {},
+        listener: (BuildContext context, state) {
+          if(state is UserLoggedOut){
+            _redirectUserToLogin(context);
+          }
+        },
         builder: (BuildContext context, state) {
           if (state is UserIsAuthenticated) {
             final stateAsUserAuthenticated = state;
@@ -48,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () => _logout(),
                           child: Icon(Icons.logout)
                         )
                       ],
@@ -82,8 +95,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text("User not authenticated"),
           );
         },
-      ),
-    ));
+      )),
+    );
   }
 }
 

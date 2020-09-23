@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:authdemo/data/constants/app-constants.dart';
+import 'package:authdemo/data/services/storage/storage-service.dart';
 import 'package:authdemo/domain/model/user.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:http/http.dart' as http;
 import 'package:authdemo/utils/logger.dart';
@@ -8,6 +10,9 @@ import 'package:authdemo/utils/logger.dart';
 class AuthService {
 
   final FlutterAppAuth appAuth = FlutterAppAuth();
+  final StorageService storageService;
+
+  AuthService({ @required this.storageService});
 
   Future<User> getAuthorization() async {
      try {
@@ -25,9 +30,15 @@ class AuthService {
       final idToken = parseIdToken(result.idToken);
       final profile = await _getUserDetails(result.accessToken);
 
-      return User(
+      var saveToken = await this.storageService.saveRefreshToken(result.refreshToken);
+
+      if(saveToken){
+        return User(
             name: idToken['name'],
             githubUrl: _parseGithubLink(profile['nickname']));
+      }else{
+        return null;
+      }
 
     } catch (e) {
       Logger.onError("AuthService", e.toString());

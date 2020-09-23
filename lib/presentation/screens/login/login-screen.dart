@@ -37,8 +37,7 @@ class LoginScreen extends StatelessWidget {
                           fontSize: AppDimens.TEXT_BODY_SMALL)),
                   SizedBox(height: AppDimens.SPACING_EXTRA_LARGE),
                   RaisedButton(
-                      onPressed: () => BlocProvider.of<UserBloc>(context)
-                          .add(UserLoginEvent()),
+                      onPressed: () => BlocProvider.of<UserBloc>(context).add(UserLoginEvent()),
                       color: AppColors.PRIMARY_COLOR,
                       child: Text("Continue with login",
                           style: TextStyle(color: AppColors.PRIMARY_OFFSET)))

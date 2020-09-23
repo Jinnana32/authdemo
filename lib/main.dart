@@ -1,3 +1,5 @@
+import 'package:authdemo/data/services/auth/auth-service.dart';
+import 'package:authdemo/data/services/storage/storage-service.dart';
 import 'package:authdemo/presentation/bloc/location/LocationBloc.dart';
 import 'package:authdemo/presentation/bloc/user/UserBloc.dart';
 import 'package:authdemo/presentation/bloc/weather/WeatherBloc.dart';
@@ -6,10 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  StorageService storageService = StorageService();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<UserBloc>(
-          create: (context) => UserBloc(),
+          create: (context) => UserBloc(
+            authService: AuthService(
+              storageService: storageService
+            ),
+            storageService: storageService
+          ),
       ),
       BlocProvider<LocationBloc>(
           create: (context) => LocationBloc(),

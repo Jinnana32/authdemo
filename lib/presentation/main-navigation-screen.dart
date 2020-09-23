@@ -25,24 +25,27 @@ class MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
+    return WillPopScope(
+      onWillPop: () async => false,
+          child: Scaffold(
+        body: IndexedStack(
+          index: _currentIndex,
+          children: _screens,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            onTap: onItemTapped,
+            currentIndex: _currentIndex,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: "Home"
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.location_searching),
+                  label: "Weather"
+              )
+            ]),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          onTap: onItemTapped,
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: "Home"
-            ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.location_searching),
-                label: "Weather"
-            )
-          ]),
     );
   }
 
