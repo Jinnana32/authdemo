@@ -1,9 +1,6 @@
 
 import 'package:authdemo/data/services/weather/weather-service.dart';
-import 'package:authdemo/domain/model/coordinates.dart';
 import 'package:authdemo/domain/model/weather.dart';
-import 'package:authdemo/presentation/bloc/location/LocationEvent.dart';
-import 'package:authdemo/presentation/bloc/location/LocationState.dart';
 import 'package:authdemo/presentation/bloc/weather/WeatherEvent.dart';
 import 'package:authdemo/presentation/bloc/weather/WeatherState.dart';
 import 'package:authdemo/utils/logger.dart';

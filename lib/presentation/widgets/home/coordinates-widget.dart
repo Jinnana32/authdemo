@@ -38,8 +38,8 @@ class _CoordinatesWidgetState extends State<CoordinatesWidget> {
             )),
           );
         }
-        return Container(
-          child: Text("Can't get coordinates"),
+        return Center(
+            child: CircularProgressIndicator(),
         );
       },
     );

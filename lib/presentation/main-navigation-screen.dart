@@ -1,5 +1,4 @@
 import 'package:authdemo/presentation/screens/home/home-screen.dart';
-import 'package:authdemo/presentation/screens/login/login-screen.dart';
 import 'package:authdemo/presentation/screens/weather/weather-screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,18 +26,21 @@ class MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
           onTap: onItemTapped,
           currentIndex: _currentIndex,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                title: Text("Home")
+                label: "Home"
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.location_searching),
-                title: Text("Weather")
+                label: "Weather"
             )
           ]),
     );
