@@ -11,8 +11,9 @@ abstract class UserState extends Equatable {
 
 class UserIsAuthenticating extends UserState {}
 
-class UserInitialState extends UserState {
-}
+class UserInitialState extends UserState {}
+
+class UserLoggedOut extends UserState {}
 
 class UserAuthenticationFailed extends UserState{
   final String errorMessage;
